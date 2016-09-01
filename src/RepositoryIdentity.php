@@ -2,6 +2,8 @@
 
 namespace G4\Repository;
 
+use G4\PredefinedVariables\Server;
+
 class RepositoryIdentity
 {
 
@@ -25,10 +27,10 @@ class RepositoryIdentity
     {
         return $this->serviceName;
     }
-         // todo add site
+
     public function getCacheKey()
     {
-        return  $this->getServiceName() .'|'. md5(serialize($this->getQueryParams()));
+        return  (new Server())->httpHost() . '|' . $this->getServiceName() .'|'. md5(serialize($this->getQueryParams()));
     }
 
 }
