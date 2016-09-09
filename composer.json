@@ -35,7 +35,7 @@
     },
     "require": {
         "php" : ">=5.4",
-        "g4/mcache": "0.8.2",
+        "g4/mcache": "0.9.0",
         "g4/identity-map": "1.2.0",
         "g4/gateway": "1.1.0",
         "g4/predefined-variables": "0.2.1"
