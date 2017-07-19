@@ -42,7 +42,7 @@
     },
     "scripts": {
         "unit-test": [
-            "vendor/bin/phpunit -c tests/unit/phpunit.xml --coverage-html tests/unit/coverage"
+            "vendor/bin/phpunit -c tests/unit/phpunit.xml --coverage-html tests/unit/coverage --colors=always"
         ]
     }
 }
