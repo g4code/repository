@@ -8,7 +8,10 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
 
     public function testInstance()
     {
-        $repository = new Repository();
+        $storageContainerMock = $this->getMockBuilder(\G4\Repository\StorageContainer::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $repository = new Repository($storageContainerMock);
         $this->assertInstanceOf(Repository::class, $repository);
     }
 }

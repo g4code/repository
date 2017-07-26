@@ -2,49 +2,40 @@
 
 namespace G4\Repository;
 
-use G4\Gateway\Http;
-use G4\Mcache\Mcache;
 use G4\Repository\Exception\MissingStorageException;
-use G4\Repository\Exception\NotValidStorageException;
 
 class RepositoryFactory
 {
 
-    private $http;
+    /**
+     * @var array
+     */
+    private $storages;
 
-    private $mcache;
-
-
+    /**
+     * RepositoryFactory constructor.
+     * @param array ...$storages
+     * @throws MissingStorageException
+     */
     public function __construct(...$storages)
     {
-        if (empty($storages)) {
-            throw new MissingStorageException();
-        }
-        $this->reviewStorages($storages);
+        $this->storages = $storages;
     }
 
+    /**
+     * @return Repository
+     */
     public function create()
     {
-
+        return new Repository($this->makeStorageContainer($this->storages));
     }
 
-    private function reviewStorages(array $storages)
+    /**
+     * @return StorageContainer
+     */
+    public function makeStorageContainer()
     {
-        foreach($storages as $aStorage) {
-            $this->setOneStorage($aStorage);
-        }
+        return new StorageContainer($this->storages);
     }
 
-    private function setOneStorage($aStorage)
-    {
-        if ($aStorage instanceof Http) {
-            $this->http = $aStorage;
-            return;
-        }
-        if ($aStorage instanceof Mcache) {
-            $this->mcache = $aStorage;
-            return;
-        }
-        throw new NotValidStorageException();
-    }
 }
