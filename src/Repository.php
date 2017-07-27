@@ -22,12 +22,21 @@ class Repository
 
     public function read()
     {
+        // IdentityMap::has -> IdentityMap::get
+
+        // RussianDoll::fetch -> IdentityMap::set
+
+        // DataMapper::find -> RussianDoll::write && IdentityMap::set
 
     }
 
     public function write()
     {
+        // DataMapper::update
 
+        // RussianDoll::expire
+
+        // IdentityMap::delete
     }
 
 

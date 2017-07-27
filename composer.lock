@@ -56,16 +56,16 @@
             "time": "2014-04-27T21:50:58+00:00"
         },
         {
-            "name": "g4/data-mapper",
+            "name": "g4/data-dataMapper",
             "version": "dev-release/1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/g4code/data-mapper.git",
+                "url": "https://github.com/g4code/data-dataMapper.git",
                 "reference": "07d082aae1b0f345c6f55755b509f9b4fb1f88c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/g4code/data-mapper/zipball/07d082aae1b0f345c6f55755b509f9b4fb1f88c6",
+                "url": "https://api.github.com/repos/g4code/data-dataMapper/zipball/07d082aae1b0f345c6f55755b509f9b4fb1f88c6",
                 "reference": "07d082aae1b0f345c6f55755b509f9b4fb1f88c6",
                 "shasum": ""
             },
@@ -108,11 +108,11 @@
                     "email": "zeljkosbgd@gmail.com"
                 }
             ],
-            "description": "data-mapper php library",
+            "description": "data-dataMapper php library",
             "keywords": [
-                "data mapper",
+                "data dataMapper",
                 "domain",
-                "mapper",
+                "dataMapper",
                 "model"
             ],
             "time": "2017-06-26 06:35:24"
@@ -2142,7 +2142,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "g4/data-mapper": 20
+        "g4/data-dataMapper": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

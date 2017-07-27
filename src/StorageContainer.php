@@ -19,7 +19,7 @@ class StorageContainer
     /**
      * @var MapperInterface
      */
-    private $mapper;
+    private $dataMapper;
 
     /**
      * @var RussianDoll
@@ -51,9 +51,9 @@ class StorageContainer
     /**
      * @return MapperInterface
      */
-    public function getMapper()
+    public function getDataMapper()
     {
-        return $this->mapper;
+        return $this->dataMapper;
     }
 
     /**
@@ -62,6 +62,30 @@ class StorageContainer
     public function getRussianDoll()
     {
         return $this->russianDoll;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasIdentityMap()
+    {
+        return $this->identityMap instanceof IdentityMap;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasDataMapper()
+    {
+        return $this->dataMapper instanceof MapperInterface;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasRussianDoll()
+    {
+        return $this->russianDoll instanceof RussianDoll;
     }
 
     /**
@@ -79,7 +103,7 @@ class StorageContainer
             return;
         }
         if ($aStorage instanceof MapperInterface) {
-            $this->mapper = $aStorage;
+            $this->dataMapper = $aStorage;
             return;
         }
         throw new NotValidStorageException();

@@ -46,6 +46,10 @@ class StorageContainerTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($identityMapStub, $storageContainer->getIdentityMap());
         $this->assertEquals($russianDollStub, $storageContainer->getRussianDoll());
-        $this->assertEquals($mapperStub, $storageContainer->getMapper());
+        $this->assertEquals($mapperStub, $storageContainer->getDataMapper());
+
+        $this->assertTrue($storageContainer->hasIdentityMap());
+        $this->assertTrue($storageContainer->hasRussianDoll());
+        $this->assertTrue($storageContainer->hasDataMapper());
     }
 }
