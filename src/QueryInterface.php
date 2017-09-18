@@ -12,4 +12,9 @@ interface QueryInterface {
 
     public function getParams();
 
+    /**
+     * @return \G4\DataMapper\Common\IdentityInterface
+     */
+    public function getIdentity();
+
 }
