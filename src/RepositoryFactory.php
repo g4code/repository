@@ -27,7 +27,7 @@ class RepositoryFactory
      */
     public function create()
     {
-        return new Repository($this->makeStorageContainer($this->storages));
+        return new Repository($this->makeStorageContainer());
     }
 
     /**

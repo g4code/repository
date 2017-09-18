@@ -20,7 +20,7 @@ class Repository
         $this->storageContainer = $storageContainer;
     }
 
-    public function read()
+    public function read(QueryInterface $query)
     {
         // IdentityMap::has -> IdentityMap::get
 
