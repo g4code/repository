@@ -18,6 +18,8 @@ class Cache implements AdapterInterface
     /** @var int */
     private $lifeTime;
 
+    private $data;
+
     /**
      * Cache constructor.
      * @param \G4\Mcache\Mcache $mcacheInstance
@@ -52,6 +54,8 @@ class Cache implements AdapterInterface
             ->value(null)
             ->expiration($this->lifeTime)
             ->set();
+
+        $this->data = null;
     }
 
     /**
@@ -59,9 +63,13 @@ class Cache implements AdapterInterface
      */
     public function get()
     {
-        return  $this->mcache
-            ->key($this->identity->getCacheKey())
-            ->get();
+        if (empty($this->data)) {
+            $this->data = $this->mcache
+                ->key($this->identity->getCacheKey())
+                ->get();
+        }
+
+        return $this->data;
     }
 
     /**
