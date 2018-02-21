@@ -3,13 +3,15 @@
 namespace G4\Repository\Adapters;
 
 use App\DI;
+use G4\Mcache\Mcache;
 use G4\Constants\CacheLifetime;
 use G4\Repository\PersistentPriority;
 use G4\Repository\RepositoryIdentity;
 
 class Cache implements AdapterInterface
 {
-    /** @var \G4\Mcache\Mcache */
+
+    /** @var Mcache */
     private $mcache;
 
     /** @var RepositoryIdentity */
@@ -20,20 +22,23 @@ class Cache implements AdapterInterface
 
     private $data;
 
+    /** @var  bool */
+    private $cacheKeyMissing;
+
     /**
      * Cache constructor.
-     * @param \G4\Mcache\Mcache $mcacheInstance
+     * @param Mcache $mcacheInstance
      * @param RepositoryIdentity $identity
      * @param int $lifeTime
      */
     public function __construct(
-        \G4\Mcache\Mcache $mcacheInstance,
+        Mcache $mcacheInstance,
         RepositoryIdentity $identity,
         $lifeTime = CacheLifetime::LIFETIME_S
     ) {
         $this->mcache = $mcacheInstance;
         // should be generated with domain, service name and params
-        $this->identity      = $identity;
+        $this->identity = $identity;
         $this->lifeTime = $lifeTime;
     }
 
@@ -42,9 +47,31 @@ class Cache implements AdapterInterface
      */
     public function has()
     {
-        $response = $this->get();
+        $response = false;
 
-        return !empty($response);
+        if (!$this->cacheKeyMissing) {
+            $response = $this->get();
+        }
+
+        return !(empty($response) && !is_array($this->data));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function get()
+    {
+        if (empty($this->data) && !is_array($this->data)) {
+            $this->data = $this->mcache
+                ->key($this->identity->getCacheKey())
+                ->get();
+        }
+
+        if ($this->data === false) {
+            $this->cacheKeyMissing = true;
+        }
+
+        return $this->data;
     }
 
     public function delete()
@@ -59,25 +86,14 @@ class Cache implements AdapterInterface
     }
 
     /**
-     * @return mixed
+     * @param array $data
+     * @return $this
      */
-    public function get()
+    public function put($data = [])
     {
-        if (empty($this->data)) {
-            $this->data = $this->mcache
-                ->key($this->identity->getCacheKey())
-                ->get();
-        }
+        $this->post($data);
 
-        return $this->data;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPriority()
-    {
-        return PersistentPriority::MEDIUM;
+        return $this;
     }
 
     /**
@@ -94,19 +110,17 @@ class Cache implements AdapterInterface
                 ->set();
         }
 
+        $this->cacheKeyMissing = false;
+
         return $this;
     }
 
     /**
-     * @param array $data
-     * @return $this
+     * @return string
      */
-    public function put($data = [])
+    public function getPriority()
     {
-        $this->post($data);
-
-        return $this;
+        return PersistentPriority::MEDIUM;
     }
-
 
 }
