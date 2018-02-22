@@ -53,7 +53,7 @@ class Cache implements AdapterInterface
             $response = $this->get();
         }
 
-        return !(empty($response) && !is_array($this->data));
+        return !empty($response);
     }
 
     /**
@@ -61,7 +61,7 @@ class Cache implements AdapterInterface
      */
     public function get()
     {
-        if (empty($this->data) && !is_array($this->data)) {
+        if (empty($this->data)) {
             $this->data = $this->mcache
                 ->key($this->identity->getCacheKey())
                 ->get();
