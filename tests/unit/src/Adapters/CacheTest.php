@@ -44,22 +44,6 @@ class CacheTest extends PHPUnit_Framework_TestCase
         );
 
         $cacheInstance->has();
-        $cacheInstance->has();
-    }
-
-    public function testHasWhenDataIsEmptyArray()
-    {
-        $cacheInstance = $this->getCacheInstance();
-
-        $this->mockMcache->expects($this->once())->method('key')->willReturn($this->mockMcache);
-        $this->mockMcache->expects($this->once())->method('get')->willReturn([]);
-
-        $this->assertEquals(
-            true,
-            $cacheInstance->has()
-        );
-
-        $cacheInstance->get();
     }
 
     public function testHasWhenKeyDoesntExists()
