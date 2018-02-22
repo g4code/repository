@@ -30,7 +30,8 @@ class RepositoryIdentity
 
     public function getCacheKey()
     {
-        return  (new Server())->httpHost() . '|' . $this->getServiceName() .'|'. md5(serialize($this->getQueryParams()));
+        return  (new Server())->httpHost()
+            . '|' . $this->getServiceName()
+            . '|' . md5(serialize($this->getQueryParams()));
     }
-
 }

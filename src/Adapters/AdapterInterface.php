@@ -16,5 +16,4 @@ interface AdapterInterface
     public function put($data = []);
 
     public function post($data = []);
-
 }

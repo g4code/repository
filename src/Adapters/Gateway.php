@@ -14,7 +14,7 @@ class Gateway implements AdapterInterface
     private $http;
 
 
-    public function __construct(\G4\Gateway\Http $http,  RepositoryIdentity $identity)
+    public function __construct(\G4\Gateway\Http $http, RepositoryIdentity $identity)
     {
         $this->identity = $identity;
         $this->http = $http;
@@ -83,5 +83,4 @@ class Gateway implements AdapterInterface
     {
         throw new \Exception($response->getResource('response')['error']['message'], $response->getCode());
     }
-
 }

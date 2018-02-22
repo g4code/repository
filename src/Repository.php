@@ -9,12 +9,11 @@ class Repository
 
     public function __construct()
     {
-
     }
 
     public function addAdapter(Adapters\AdapterInterface $adapter)
     {
-        if(isset($this->adapters[$adapter->getPriority()])){
+        if (isset($this->adapters[$adapter->getPriority()])) {
             throw new \Exception('Change adapter priority', 409);
         }
 
@@ -37,14 +36,14 @@ class Repository
         $response = null;
         $updateAdapters = [];
         foreach ($this->adapters as $adapter) {
-            if($adapter->has()){
+            if ($adapter->has()) {
                 $response = $adapter->get();
                 break;
             }
             $updateAdapters[] = $adapter;
         }
 
-        if(!empty($updateAdapters)){
+        if (!empty($updateAdapters)) {
             $this->putToStorage($updateAdapters, $response);
         }
         return $response;

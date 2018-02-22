@@ -2,7 +2,6 @@
 
 namespace G4\Repository\Adapters;
 
-
 use G4\Repository\PersistentPriority;
 use G4\Repository\RepositoryIdentity;
 
@@ -47,5 +46,4 @@ class Memory implements AdapterInterface
     {
         return $this->identityMap->set($this->identity->getCacheKey(), $data);
     }
-
 }

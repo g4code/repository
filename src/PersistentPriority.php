@@ -10,5 +10,4 @@ class PersistentPriority
     const MEDIUM    = '50';
 
     const HEIGH     = '10';
-
 }

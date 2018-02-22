@@ -122,5 +122,4 @@ class Cache implements AdapterInterface
     {
         return PersistentPriority::MEDIUM;
     }
-
 }
