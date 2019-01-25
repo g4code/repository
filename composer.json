@@ -34,10 +34,10 @@
         "phpunit/phpunit": "4.8.*"
     },
     "require": {
-        "php" : ">=5.4",
+        "php" : ">=5.6",
         "g4/mcache": "1.*",
         "g4/identity-map": "1.*",
-        "g4/gateway": "1.*",
+        "g4/gateway": "2.*",
         "g4/predefined-variables": "*"
     }
 }
